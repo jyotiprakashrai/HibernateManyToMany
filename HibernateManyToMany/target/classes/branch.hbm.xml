@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping package="com.jyoti.hibernate.model">
+
+	<class name="Branch" table="BRANCH" >
+		<id name="id" type="long">
+			<column name="branch_id" />
+			<generator class="identity" />
+		</id>
+		
+		<property name="address" type="string">
+			<column name="branch_address" />
+		</property>
+		<property name="email" type="string">
+			<column name="branch_email" />
+		</property>
+		
+		<set name="customers" table="BRANCH_CUSTOMERS" fetch="select" cascade="all">
+			<key column="branch_id" />
+			<many-to-many class="Customer" column="cust_id" />
+		</set>
+	
+	</class>
+	
+</hibernate-mapping>
